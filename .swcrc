@@ -1,0 +1,21 @@
+{
+	"$schema": "https://swc.rs/schema.json",
+	"jsc": {
+		"parser": {
+			"syntax": "typescript",
+			"tsx": false,
+			"decorators": false,
+			"dynamicImport": false
+		},
+		"target": "es2016",
+		"loose": false,
+		"transform": {
+			"legacyDecorator": true,
+			"decoratorMetadata": true
+		}
+	},
+
+	"minify": true,
+	"sourceMaps": true,
+	"inlineSourcesContent": false
+}

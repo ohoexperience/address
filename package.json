@@ -1,0 +1,41 @@
+{
+	"name": "@ohochat/address",
+	"version": "1.0.0",
+	"description": "Suggestion for relation locations detail",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"dev": "tsx watch src/index.ts",
+		"build": "pkgroll --sourcemap",
+		"test": "vitest",
+		"test-coverage": "vitest --coverage"
+	},
+	"keywords": [
+		"location",
+		"successtion",
+		"geo",
+		"address"
+	],
+	"author": "ohoexperience",
+	"homepage": "https://github.com/ohoexperience/address#readme",
+	"repository": "https://github.com/ohoexperience/address.git",
+	"license": "ISC",
+	"devDependencies": {
+		"@eslint/js": "^9.10.0",
+		"@types/node": "^22.5.4",
+		"@vitest/coverage-v8": "^2.1.1",
+		"eslint": "9.10.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.2.1",
+		"globals": "^15.9.0",
+		"jiti": "^1.21.6",
+		"pkgroll": "^2.5.0",
+		"prettier": "3.3.3",
+		"tsx": "^4.19.1",
+		"type-fest": "^4.26.1",
+		"typescript": "^5.6.2",
+		"typescript-eslint": "^8.5.0",
+		"vite-tsconfig-paths": "^5.0.1",
+		"vitest": "^2.1.1"
+	}
+}
