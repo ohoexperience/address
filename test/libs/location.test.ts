@@ -2,94 +2,48 @@ import { Location } from '../../src/libs/location'
 
 describe('Location', () => {
 	const loc = new Location()
-
-	describe('exucute', () => {
-		const geo = loc.getGeography()
-		it('get geo response', () => {
-			expect(geo).toHaveLength(7436)
-			expect(geo[0]).toEqual({
-				districtCode: 1001,
-				districtName: 'พระนคร',
-				postalCode: 10200,
-				provinceCode: 10,
-				provinceName: 'กรุงเทพมหานคร',
-				subdistrictCode: 100101,
-				subdistrictName: 'พระบรมมหาราชวัง',
-			})
+	test('execute', () => {
+		const res = loc.execute({
+			postalCode: 10270,
+			subDistrictName: 'ปากน้ำ',
 		})
+		expect(res).toStrictEqual([
+			{
+				districtCode: 1101,
+				districtName: 'เมืองสมุทรปราการ',
+				postalCode: 10270,
+				provinceCode: 11,
+				provinceName: 'สมุทรปราการ',
+				subDistrictCode: 110101,
+				subDistrictName: 'ปากน้ำ',
+			},
+		])
 
-		it('get geo with query', () => {
-			expect(
-				loc.getGeography({
-					postalCode: 10200,
-					provinceCode: 10,
-					districtCode: 1001,
-					subdistrictCode: 100101,
-				})[0],
-			).toEqual({
-				districtCode: 1001,
-				districtName: 'พระนคร',
-				postalCode: 10200,
-				provinceCode: 10,
-				provinceName: 'กรุงเทพมหานคร',
-				subdistrictCode: 100101,
-				subdistrictName: 'พระบรมมหาราชวัง',
-			})
-		})
+		const res1 = loc.execute(
+			{
+				provinceName: 'กรุง',
+				districtName: 'บางนา',
+				subDistrictName: 'บางนาใต้',
+			},
+			(row) => ({ a: `${row.provinceName} ${row.postalCode}` }),
+		)
+		expect(res1).toStrictEqual([
+			{
+				a: 'กรุงเทพมหานคร 10260',
+			},
+		])
 
-		it('search start with word', () => {
-			expect(loc.getProvince('กร')).toEqual([
-				{
-					provinceCode: 10,
-					provinceName: 'กรุงเทพมหานคร',
-				},
-				{
-					provinceCode: 81,
-					provinceName: 'กระบี่',
-				},
-			])
-		})
-
-		it('query with properties', () => {
-			expect(loc.getProvince('', { postalCode: 10260 })).toEqual([
-				{
-					provinceCode: 10,
-					provinceName: 'กรุงเทพมหานคร',
-				},
-			])
-			expect(loc.getDistrict('', { postalCode: 10260 })).toEqual([
-				{
-					districtCode: 1009,
-					districtName: 'พระโขนง',
-				},
-				{
-					districtCode: 1047,
-					districtName: 'บางนา',
-				},
-			])
-			expect(loc.getSubdistrict('', { postalCode: 10260 })).toEqual([
-				{
-					subdistrictCode: 100905,
-					subdistrictName: 'บางจาก',
-				},
-				{
-					subdistrictCode: 100910,
-					subdistrictName: 'พระโขนงใต้',
-				},
-				{
-					subdistrictCode: 104702,
-					subdistrictName: 'บางนาเหนือ',
-				},
-				{
-					subdistrictCode: 104703,
-					subdistrictName: 'บางนาใต้',
-				},
-			])
-			expect(loc.getPostalCode('', { postalCode: 10260 })).toEqual([
-				{
-					postalCode: 10260,
-				},
-			])
-		})
+		const res2 = loc.execute(
+			{
+				provinceName: 'กรุง',
+				districtName: 'บางนา',
+			},
+			(acc, row) => {
+				acc.add(row.provinceName)
+				return acc
+			},
+			new Set<string>(),
+		)
+		expect(Array.from(res2)).toStrictEqual(['กรุงเทพมหานคร'])
 	})
 })

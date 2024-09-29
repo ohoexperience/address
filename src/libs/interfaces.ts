@@ -17,35 +17,20 @@ export interface DatabaseSchema {
 	provinceName: string
 	districtCode: number
 	districtName: string
-	subdistrictCode: number
-	subdistrictName: string
-	postalCode: number
-}
-
-export interface Province {
-	provinceCode: number
-	provinceName: string
-}
-
-export interface District {
-	districtCode: number
-	districtName: string
-}
-
-export interface Subdistrict {
-	subdistrictCode: number
-	subdistrictName: string
-}
-
-export interface PostalCode {
+	subDistrictCode: number
+	subDistrictName: string
 	postalCode: number
 }
 
 export interface DatabaseSchemaQuery {
 	provinceCode?: number
 	districtCode?: number
-	subdistrictCode?: number
+	subDistrictCode?: number
+
 	postalCode?: number
+	provinceName?: string
+	districtName?: string
+	subDistrictName?: string
 }
 
 export type MinifySubDistrictDatabase = [string, number, Array<number>]
@@ -53,3 +38,6 @@ export type MinifyDistrictDatabase = [string, number, Array<MinifySubDistrictDat
 export type MinifyProvinceDatabase = [string, number, Array<MinifyDistrictDatabase>]
 export type MinifyDatabase = Array<MinifyProvinceDatabase>
 export type ComposisCondition<T> = (e: T) => boolean
+
+export type MapCallback<Res> = (row: DatabaseSchema) => Res
+export type ReduceCallback<Init> = (init: Init, row: DatabaseSchema) => Init

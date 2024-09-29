@@ -1,10 +1,14 @@
 {
 	"name": "@ohochat/address",
-	"version": "1.0.0",
+	"version": "1.0.0-rc4",
 	"description": "Suggestion for relation locations detail",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"files": [
+		"dist/**"
+	],
 	"scripts": {
+		"pre-build": "rm -rf dist",
 		"dev": "tsx watch src/index.ts",
 		"build": "pkgroll --sourcemap",
 		"test": "vitest",
