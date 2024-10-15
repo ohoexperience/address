@@ -1,6 +1,6 @@
 {
 	"name": "@ohochat/address",
-	"version": "1.0.0-rc4",
+	"version": "1.0.0-rc5",
 	"description": "Suggestion for relation locations detail",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
@@ -23,7 +23,7 @@
 	"author": "ohoexperience",
 	"homepage": "https://github.com/ohoexperience/address#readme",
 	"repository": "https://github.com/ohoexperience/address.git",
-	"license": "ISC",
+	"license": "MIT",
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
 		"@types/node": "^22.5.4",

@@ -216,3 +216,8 @@ Set(1) { 'กรุงเทพมหานคร' }
 ## Data Source
 
 The address data is sourced from and managed by [thailand-geography-json](https://github.com/thailand-geography-data/thailand-geography-json). Kudos to the team for their great works!
+
+
+## License
+
+MIT © [Oho Chat](https://github.com/ohoexperience). See [LICENSE](https://github.com/ohoexperience/address/blob/main/LICENSE) for details.
